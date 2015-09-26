@@ -14,7 +14,7 @@ var unicorn = null;
  *
  */
 
-
+var videogame_system = 'Atari';
 /* Step 3
  *
  * Declare a variable named "sahara_animal"
