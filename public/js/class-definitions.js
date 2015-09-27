@@ -374,6 +374,11 @@ var drink = function(x){
  *
  */
 
+var browseURL = function(browser){
+  if(!browsers.hasOwnProperty(browser)) return false;
+
+  return browsers[browser];
+};
 
 /* Step 25
  *
