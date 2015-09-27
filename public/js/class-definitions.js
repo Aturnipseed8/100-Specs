@@ -234,7 +234,7 @@ var laptopCosts = {
  * "Species"
  *
  */
-
+var livingOrganismClassification = ["Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species"];
 
 /* Step 18
  *
