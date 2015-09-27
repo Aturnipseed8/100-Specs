@@ -811,7 +811,37 @@ Scientist.prototype.addDiscovery = function(arg) {
  *   rob
  *
  */
+function BankAccount (balance, owner) {
+  this.balance = balance;
+  this.owner = owner;
+}
 
+BankAccount.prototype.withdraw = function(amount, person) {
+  if (this.owner === person) {
+    if (this.balance >= amount) {
+      this.balance -= amount;
+      this.owner.money += amount;
+    } else {
+      return 'Insufficient funds, please enter a new amount.';
+    }
+  }
+};
+
+BankAccount.prototype.desposit = function(amount, person) {
+  if (this.owner === person) {
+    if (this.owner.money >= amount) {
+      this.balance += amount;
+      this.owner.money -= amount;
+    } else {
+      return 'Insufficient amount on person, please enter a new amount';
+    }
+  }
+};
+
+BankAccount.prototype.rob = function(person) {
+  person.money += this.balance;
+  this.balance = 0;
+};
 
 /* Step 37
  *
