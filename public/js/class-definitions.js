@@ -485,6 +485,14 @@ Person.prototype.earnMoney = function(money){
  *
  */
 
+var purchaseLaptop = function(laptop){
+  if((laptopCosts.hasOwnProperty(laptop)) && (typeof laptop === 'string') ){
+    var costOfLaptop = laptopCosts[laptop];
+    return costOfLaptop.toString();
+  }
+  return -1;
+};
+
 
 /* Step 29
  *
