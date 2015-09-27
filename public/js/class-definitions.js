@@ -300,7 +300,9 @@ var sahara_river = function(){
  * @return {Number}
  *
  */
-
+var addNumbers = function(x, y){
+  return x + y;
+};
 
 /* Step 22
  *
@@ -313,7 +315,15 @@ var sahara_river = function(){
  * @return {Bool}
  *
  */
+var installLinux = function(x){
 
+  if(linuxFlavors.indexOf(x) > -1){
+    return true;
+  }else{
+    return false;
+  }
+
+};
 
 /* Step 23
  *
