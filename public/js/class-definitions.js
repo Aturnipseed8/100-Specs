@@ -460,7 +460,18 @@ var favoritePlanet = function(planet){
  *   earnMoney
  *
  */
-
+function Person(name, money, age, gender){
+  this.name = name;
+  this.money = money;
+  this.age = age;
+  this.gender = gender;
+}
+Person.prototype.spendMoney = function(money){
+    this.money -= money;
+  };
+Person.prototype.earnMoney = function(money){
+    this.money += money;
+  };
 
 /* Step 28
  *
