@@ -600,6 +600,15 @@ Garden.prototype.grow = function() {
  *
  */
 
+function SolarSystem(){
+  this.planets = [];
+}
+SolarSystem.prototype.addPlanet = function(planets) {
+  this.planets.push(planets);
+};
+SolarSystem.prototype.removePlanet = function(planets) {
+  this.planets.pop();
+};
 
 /* Step 33
  *
