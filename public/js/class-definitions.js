@@ -1090,7 +1090,9 @@ function Shoe (size, color) {
  * @param {number} stories How many stories tall the house is
  */
 
-
+function House (stories) {
+  this.stories = stories;
+}
 /**
  * Step 57
  *
@@ -1098,6 +1100,9 @@ function Shoe (size, color) {
  * @param {boolean} isOn Whether the light is on or off
  */
 
+function Lightbulb (isOn) {
+  this.isOn = isOn;
+}
 
 /**
  * Step 58
@@ -1105,7 +1110,9 @@ function Shoe (size, color) {
  * Cookie class
  * @param {string} flavor The cookie's flavor
  */
-
+function Cookie (flavor) {
+  this.flavor = flavor;
+}
 
 /**
  * Step 59
