@@ -1120,7 +1120,9 @@ function Cookie (flavor) {
  * Meal class
  * @param {Array} foods All the foods in the meal
  */
-
+function Meal (foods) {
+  this.foods = foods;
+}
 
 /**
  * Create a new instance of the Classes you defined above, below!
@@ -1129,44 +1131,44 @@ function Cookie (flavor) {
 
 
 // Create 2 different species of animals
-var george;
-var nemo;
+var george = new Animal('Monkey', gender.male);
+var nemo = new Animal('Fish', gender.male);
 
 // Create 2 different vehicles
-var civic;
-var forte;
+var civic = new Vehicle('Honda', 'Civic');
+var forte = new Vehicle('KIA', 'Forte');
 
 // Create 2 shapes with different numbers of sides
-var square;
-var hexagon;
+var square = new Shape(4);
+var hexagon = new Shape(6);
 
 // Create 2 boxes
-var catBox;
-var christmasPresent;
+var catBox = new Box(new Animal('Cat', gender.unknown), true);
+var christmasPresent = new Box('Coal', false);
 
 // Create 2 doors
-var automaticDoor;
-var bankVault;
+var automaticDoor = new Door(true);
+var bankVault = new Door(false);
 
 // Create 2 shoes
-var rubySlippers;
-var dressShoes;
+var rubySlippers = new Shoe(7, 'red');
+var dressShoes = new Shoe(10, 'black');
 
 // Create 2 houses
-var singleStory;
-var twoStory;
+var singleStory = new House(1);
+var twoStory = new House(2);
 
 // Create 2 lightbulbs
-var incandescent;
-var halogen;
+var incandescent = new Lightbulb(true);
+var halogen = new Lightbulb(false);
 
 // Create 2 cookies of different flavors
-var chocolateChip;
-var gingerbread;
+var chocolateChip = new Cookie('chocolate');
+var gingerbread = new Cookie('gingerbread');
 
 // Create 2 different meals
-var breakfast;
-var dinner;
+var breakfast = new Meal(['cereal', 'milk']);
+var dinner = new Meal(['fish', 'vegetables']);
 
 
  /* Steps 81 to 90
@@ -1190,7 +1192,16 @@ var dinner;
  *       Any other species => "Could not determine if warm-blooded"
  *
  */
-
+Animal.prototype.isWarmBlooded = function() {
+  if (this.species == 'Fish') {
+    return false;
+  } else if (this.species == 'Monkey' ||
+             this.species == 'Bird') {
+    return true;
+  } else {
+    return 'Could not determine if warm-blooded';
+  }
+};
 
 /* Step 82
  *
@@ -1199,9 +1210,14 @@ var dinner;
  * return "Driving on {streetName}", else return "Driving forward".
  *
  */
+Vehicle.prototype.drive = function(streetName) {
+  if (typeof streetName === 'string' && streetName.length > 0) {
+    return 'Driving on ' + streetName;
+  }
+  return 'Driving forward';
+};
 
-
- /* Step 83
+/* Step 83
  *
  * Declare a Shape method called getType that returns a string
  * containing the type of shape based on the sides property.
@@ -1218,7 +1234,28 @@ var dinner;
  * Any other number => "Could not determine type"
  *
  */
-
+Shape.prototype.getType = function() {
+  switch (this.sides) {
+    case 3 :
+      return 'triangle';
+    case 4 :
+      return 'quadrilateral';
+    case 5 :
+      return 'pentagon';
+    case 6 :
+      return 'hexagon';
+    case 7 :
+      return 'heptagon';
+    case 8 :
+      return 'octagon';
+    case 9 :
+      return 'nonagon';
+    case 10 :
+      return 'decagon';
+    default :
+      return 'Could not determine type';
+  }
+};
 
 /* Step 84
  *
@@ -1228,16 +1265,29 @@ var dinner;
  * Return true if openBox opens the box, false otherwise.
  *
  */
+Box.prototype.openBox = function() {
+  if (this.isOpen === false) {
+    this.isOpen = true;
+    return true;
+  }
+  return false;
+};
 
-
- /* Step 85
+/* Step 85
  *
  * Declare a Door method called openClose that opens the door
  * if it is already closed, or closes the door if it is already open.
  * Return true if openClose opens the door, false if openClose closes the door.
  *
  */
-
+Door.prototype.openClose = function() {
+  if (this.isOpen === false) {
+    this.isOpen = true;
+    return true;
+  }
+  this.isOpen = false;
+  return false;
+};
 
 /* Step 86
  *
@@ -1245,9 +1295,11 @@ var dinner;
  * the color and size of the shoe ("Found red shoes of size 7").
  *
  */
+Shoe.prototype.findShoes = function() {
+  return 'Found ' + this.color + ' shoes of size ' + this.size;
+};
 
-
- /* Step 87
+/* Step 87
  *
  * Declare a House method called isATallStory that accepts a
  * param number called storiesTooTall.
@@ -1255,9 +1307,14 @@ var dinner;
  * storiesTooTall, return true, else return false.
  *
  */
+House.prototype.isATallStory = function(storiesTooTall) {
+  if (this.stories >= storiesTooTall) {
+    return true;
+  }
+  return false;
+};
 
-
- /* Step 88
+/* Step 88
  *
  * Declare a Lightbulb method called flipSwitch that accepts a
  * param string called on.  If on is the string "on", set
@@ -1266,18 +1323,30 @@ var dinner;
  * Return true if isOn is true, false otherwise.
  *
  */
+Lightbulb.prototype.flipSwitch = function(on) {
+  if (on == 'on') {
+    this.isOn = true;
+    return true;
+  }
+  this.isOn = false;
+  return false;
+};
 
-
- /* Step 89
+/* Step 89
  *
  * Declare a Cookie method called swipedByCookieMonster that accepts
  * a param called dayOfTheWeek.  If the cookie's flavor is "chocolate"
  * and the dayOfTheWeek is "Monday", return true.  Else return false.
  *
  */
+Cookie.prototype.swipedByCookieMonster = function(dayOfTheWeek) {
+  if (this.flavor == 'chocolate' && dayOfTheWeek == 'Monday') {
+    return true;
+  }
+  return false;
+};
 
-
- /* Step 90
+/* Step 90
  *
  * Declare a Meal method called containsJunkFood that returns true if
  * at least one of the items in the foods array is junk food, false otherwise.
@@ -1290,9 +1359,17 @@ var dinner;
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf
  *
  */
+Meal.prototype.containsJunkFood = function() {
+  var junkFood = ['chips', 'soda', 'ice cream', 'popcorn', 'candy'];
+  for (var i = 0; i < junkFood.length; i++) {
+    if (this.foods.indexOf(junkFood[i]) > -1) {
+      return true;
+    }
+  }
+  return false;
+};
 
-
- /* Steps 91 to 100
+/* Steps 91 to 100
  *
  * Call methods
  *
@@ -1305,9 +1382,10 @@ var dinner;
  * and assign the values to each variable below.
  *
  */
-var warmBloodedAnimal;
-var coldBloodedAnimal;
-var notWarmOrColdAnimal;
+var warmBloodedAnimal = george.isWarmBlooded();
+var coldBloodedAnimal = nemo.isWarmBlooded();
+var owl = new Animal('owl', gender.female);
+var notWarmOrColdAnimal = owl.isWarmBlooded();
 
 
 /* Step 92
@@ -1316,18 +1394,20 @@ var notWarmOrColdAnimal;
  * and assign the values to each variable below.
  *
  */
-var streetDriving;
-var forwardDriving;
+var streetDriving = forte.drive('Iliaina St.');
+var forwardDriving = civic.drive();
 
 
- /* Step 93
+/* Step 93
  *
  * Call the getType method on two Shape instances
  * and assign the values to each variable below.
  *
  */
-var decagon;
-var polygon;
+var dec = new Shape(10);
+var poly = new Shape(100000);
+var decagon = dec.getType();
+var polygon = poly.getType();
 
 
 /* Step 94
@@ -1336,18 +1416,21 @@ var polygon;
  * and assign the values to each variable below.
  *
  */
-var openAClosedBox;
-var closeAnOpenBox;
+var closedBox = new Box('nothing', false);
+var openAClosedBox = closedBox.openBox();
+var closeAnOpenBox = catBox.openBox();
 
 
- /* Step 95
+/* Step 95
  *
  * Call the openClose method on two Door instances
  * and assign the values to each variable below.
  *
  */
-var openAClosedDoor;
-var closeAnOpenDoor;
+var closedDoor = new Door(false);
+var openDoor = new Door(true);
+var openAClosedDoor = closedDoor.openClose();
+var closeAnOpenDoor = openDoor.openClose();
 
 
 /* Step 96
@@ -1356,45 +1439,51 @@ var closeAnOpenDoor;
  * and assign the values to each variable below.
  *
  */
-var redShoesSize7;
-var blackShoesSize10;
+var redShoesSize7 = rubySlippers.findShoes();
+var blackShoesSize10 = dressShoes.findShoes();
 
 
- /* Step 97
+/* Step 97
  *
  * Call the isATallStory method on two House instances
  * and assign the values to each variable below.
  *
  */
-var farTooTallAStory;
-var shortStory;
+var farTooTallAStory = twoStory.isATallStory(1);
+var shortStory = singleStory.isATallStory(5);
 
 
- /* Step 98
+/* Step 98
  *
  * Call the switch method on two Lightbulb instances
  * and assign the values to each variable below.
  *
  */
-var kitchenLightsOn;
-var porchLightsOff;
+var kitchenLights = new Lightbulb(false);
+var porchLights = new Lightbulb(true);
+var kitchenLightsOn = kitchenLights.flipSwitch('on');
+var porchLightsOff = porchLights.flipSwitch('off');
 
 
- /* Step 99
+/* Step 99
  *
  * Call the swipedByCookieMonster method on two Cookie instances
  * and assign the values to each variable below.
  *
  */
-var cookieMonsterPwns;
-var cookieMonsterBlocked;
+var cookieToBeSwiped = new Cookie('chocolate');
+var cookieCantBeTouched = new Cookie('chocolate');
+var cookieMonsterPwns = cookieToBeSwiped.swipedByCookieMonster('Monday');
+var cookieMonsterBlocked = cookieCantBeTouched.swipedByCookieMonster('Tuesday');
 
 
- /* Step 100
+/* Step 100
  *
  * Call the containsJunkFood method on two Meal instances
  * and assign the values to each variable below.
  *
  */
-var badForYou;
-var goodForYou;
+var badFoods = new Meal(['bread', 'wine', 'sugar']);
+var goodFoods = new Meal(['celery', 'spinach', 'kale']);
+var badForYou = badFoods.containsJunkFood();
+var goodForYou = goodFoods.containsJunkFood();
